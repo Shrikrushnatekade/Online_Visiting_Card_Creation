@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'image/logom.png' %}">
+    <link rel="stylesheet" href="{% static 'css/styleReg.css'%}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Login</h2>
+        </div>
+        {% if messages %}
+
+            {% for message in messages %}
+            <div class="" style="color: red; text-align: center;">
+                {{ message }}
+            </div>
+            {% endfor %}
+      
+        {% endif %}
+        <form class="form" method="POST">
+        {% csrf_token %}
+            <div class="form-control">
+                {% for fm in form %}
+                    {{ fm.label_tag }}
+                    {{ fm }}
+                {% endfor %}
+            </div>
+            <input type="submit" value="Login" class="btn" >
+            <div class="form-control create-account">
+                <label> No Account? <a href="/Registration">Create Account</a></label>
+            </div>
+            <div class="form-control forgotPass">
+                <label><a href="#">Forgot Password</a></label>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

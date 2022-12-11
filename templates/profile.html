@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ usern }} | Profile</title>
+        <!-- font awesome cdn link  -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet"
+              href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'image/logom.png' %}">
+    </head>
+    <body>
+        {% block Navbar %}
+            <!-- Navbar Section start -->
+            <section class="header" id="home">
+                <a href="#home" class="logo">
+                    <img src="{% static 'image/logo.png' %}" alt="logo" srcset="">
+                </a>
+                <nav class="navbar">
+                    <a href="#"><i class="uil uil-home"> Home</i></a>
+                    <a href="/about/"><i class="uil uil-info-circle"> About</i></a>
+                    <a href="/contact/"><i class="uil uil-info-circle"> Contact</i></a>
+                    <a href="#"><i class="uil uil-info-circle"> Welcome {{ usern }}</i></a>
+                    <a href="/profile/logout/"><i class="uil uil-info-circle"> logout</i></a>
+                </nav>
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div class="icons">
+                    <a href="#" class="fas fa-shopping-bag"></a>
+                </div>
+            </section>
+        {% endblock Navbar %}
+        <section class="home" id="home">
+            <div class="swiper home-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide slide"
+                         style="background: url({% static 'image/bus.png' %}) no-repeat;">
+                        <div class="content">
+                            <h3>Business Card</h3>
+                        </div>
+                    </div>
+                    <div class="swiper-slide slide"
+                         style="background: url({% static 'image/ban2.png' %}) no-repeat;">
+                        <div class="content">
+                            <h3>Shop Card</h3>
+                        </div>
+                    </div>
+                    <div class="swiper-slide slide"
+                         style="background: url({% static 'image/b3.png' %}) no-repeat;">
+                        <div class="content">
+                            <h3>Service Card</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        <!-- Category Section start -->
+        <section class = "main-container">
+            <h2>Categories</h2>
+            <div class = "filter-container">
+                <div class = "category-head">
+                    <ul>
+                        <div class = "category-title active" id = "all">
+                            <li>All</li>
+                        </div>
+                        <div class = "category-title" id = "business">
+                            <li>Business</li>
+                        </div>
+                        <div class = "category-title" id = "shop">
+                            <li>shop</li>
+                        </div>
+                        <div class = "category-title" id = "service">
+                            <li>Service</li>
+                        </div>
+                        <div class = "category-title" id = "meeting">
+                            <li>meeting</li>
+                        </div>
+                        <div class = "category-title" id = "personal">
+                            <li>Personal</li>
+                        </div>
+                        <!-- <div class = "category-title" id = "meeting">
+                         <li>Meeting</li>
+                     </div> -->
+                    </ul>
+                </div>
+                <div class = "posts-collect">
+                    <div class = "posts-main-container">
+                        <!-- single post -->
+                        <div class = "all business">
+                            <div class = "post-img">
+                                <img src = "{% static 'image/b1.png' %}" alt = "post">
+                                <span class = "category-name">business</span>
+                            </div>
+                            <button type = "button" class = "read-btn">
+                                <a href="/profile/create_card">Apply Now</a>
+                            </button>
+                        </div>
+                        <!-- single post -->
+                        <!-- single post -->
+                        <div class = "all shop">
+                            <div class = "post-img">
+                                <img src = "{% static 'image/b2.png' %}" alt = "post">
+                                <span class = "category-name">shop</span>
+                            </div>
+                            <button type = "button" class = "read-btn">
+                                <a href="/profile/selfcard">Apply Now</a>
+                            </button>
+                        </div>
+                        <!-- end of single post -->
+                        <!-- single post -->
+                        <div class = "all meeting">
+                            <div class = "post-img">
+                                <img src = "{% static 'image/b3.png' %}" alt = "post">
+                                <span class = "category-name">meeting</span>
+                            </div>
+                            <button type = "button" class = "read-btn">
+                                <a href="/profile/card4/">Apply Now</a>
+                            </button>
+                        </div>
+                        <!-- end of single post -->
+                        <!-- single post -->
+                        <div class = "all personal">
+                            <div class = "post-img">
+                                <img src = "{% static 'image/b4.png' %}" alt = "post">
+                                <span class = "category-name">personal</span>
+                            </div>
+                            <button type = "button" class = "read-btn">
+                                <a href="/profile/creation_card2">Apply Now</a>
+                            </button>
+                        </div>
+                        <!-- end of single post -->
+                        <!-- single post -->
+                        <div class = "all service">
+                            <div class = "post-img">
+                                <img src = "{% static 'image/banner/business-1.jpg' %}" alt = "post">
+                                <span class = "category-name">service</span>
+                            </div>
+                            <button type = "button" class = "read-btn">
+                            Apply Now</a>
+                        </button>
+                    </div>
+                    <!-- end of single post -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'js/swiper-bundle.min.js' %} "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+    <script src="{% static "js/index.js"%}"></script>
+</body>
+</html>

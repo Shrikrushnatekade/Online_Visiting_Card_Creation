@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <link rel="stylesheet" href="{% static 'css/creationcard2.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'image/logom.png' %}">
+</head>
+
+<body onload="autoClick();">
+    <form class="my-form" method="post">
+        {% csrf_token %}
+        <div class="container">
+            <h1>Fill Your Information</h1>
+            <ul>
+                <li>
+                    <div class="grid grid-1">
+                        <input type="text" placeholder="Enter Your Full Name" name="fullName">
+                    </div>
+                </li>
+                <li>
+                    <div class="grid grid-2">
+                        <input type="email" placeholder="Email" name="email">
+                        <input type="tel" placeholder="Phone" name="number">
+                    </div>
+                </li>
+                <li>
+                    <div class="grid grid-2">
+                        <input type="text" placeholder="Address" name="street">
+                        <input type="text" placeholder="Country" name="city">
+                </li>
+                <li>
+                    <div class="grid grid-1">
+                        <input type="text" placeholder="Work " name="work">
+                    </div>
+                </li>
+                <div class="grid grid-3">
+                    <div class="required-msg"></div>
+                    <button class="btn-grid" type="submit">
+                        <span class="back">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                style="fill:#afafaf;">
+                                <path
+                                    d="M19 9.062s-5.188-.333-7 1.938c2-4.896 7-5.938 7-5.938v-2l5 4-5 4.019v-2.019zm-18.974 14.938h23.947l-11.973-11.607-11.974 11.607zm1.673-14l10.291-7.488 3.053 2.218c.712-.459 1.391-.805 1.953-1.054l-5.006-3.637-11.99 8.725v12.476l7.352-7.127-5.653-4.113zm15.753 4.892l6.548 6.348v-11.612l-6.548 5.264z" />
+                            </svg>
+                        </span>
+                        <span class="front">Submit</span>
+                    </button>
+                    <button class="btn-grid" type="reset">
+                        <span class="back">
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/eraser-icon.svg" alt="">
+                        </span>
+                        <span class="front">RESET DATA</span>
+                    </button>
+                </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="card back" id="htmlContent">
+        <div class="yellow"></div>
+        <div class="top dots"></div>
+        <div class="personal-info">
+            <p>
+                {{ data.name | default:'[ Your Name ]' }}
+            </p>
+            <p>
+                {{ data.work | default:'[ Work ]' }}
+            </p>
+            <p>
+                {{ data.Address | default:'[ Address ]'}}
+            </p>
+            <p>
+                {{ data.country | default:'[ Country Name ]'}}
+            </p>
+            <p>
+                +91 {{ data.number | default:'[ Mobile Number ]'}}
+            </p>
+            <p>
+                {{ data.emailu | default:'[ Gmail ]'}}
+            </p>
+        </div>
+        <div class="bottom dots"></div>
+        <div class="pink"></div>
+    </div>
+    <div class="btn-container">
+        <a id="download" class="btn center">Download</a>
+    </div>
+    <script>
+        function autoClick() {
+            $("#download").click();
+        }
+
+        $(document).ready(function () {
+            var element = $("#htmlContent");
+
+            $("#download").on('click', function () {
+
+                html2canvas(element, {
+                    onrendered: function (canvas) {
+                        var imageData = canvas.toDataURL("image/jpg");
+                        var newData = imageData.replace(/^data:image\/jpg/, "data:application/octet-stream");
+                        $("#download").attr("download", "image.jpg").attr("href", newData);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
